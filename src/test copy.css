@@ -1,0 +1,92 @@
+/* Start -- form above the fold implementation styles */
+
+/* optional padding class */
+.mb_hero_padding_6 {
+  padding-top: 168px !important;
+  padding-bottom: 60px !important;
+}
+
+.mb_hero_enq_form_row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mb_hero_enq_form_row.et_pb_row {
+  padding-bottom: 0px !important;
+}
+
+.mb_hero_col_left {
+  width: 52% !important;
+}
+
+.mb_hero_col_right {
+  max-width: 560px;
+  height: 100%;
+  border: 10px solid rgba(0, 117, 219, 0.3);
+  border-radius: 34px;
+  background-color: #fff;
+  padding: 30px !important;
+}
+
+@media (max-width: 1124px) {
+  .mb_hero_padding_6 {
+    padding-top: 120px !important;
+    padding-bottom: 0px !important;
+  }
+
+  .mb_hero_col_left,
+  .mb_hero_col_right {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 834px) {
+  .mb_hero_enq_form_section {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 24, 72, 1) 24%,
+      rgba(0, 116, 217, 1) 62%,
+      rgba(255, 255, 255, 1) 35%
+    );
+    padding: 0;
+  }
+
+  .mb_hero_enq_form_row {
+    flex-direction: column;
+  }
+
+  .mb_hero_col_left,
+  .mb_hero_col_right {
+    width: 100% !important;
+  }
+
+  .mb_hero_col_right {
+    margin-top: 40px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 667px) {
+  .mb_hero_padding_6 {
+    padding-top: 80px !important;
+  }
+
+  .mb_hero_enq_form_section {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 24, 72, 1) 24%,
+      rgba(0, 116, 217, 1) 66%,
+      rgba(255, 255, 255, 1) 35%
+    );
+  }
+
+  .mb_hero_enq_form_row.et_pb_row {
+    padding-bottom: 0 !important;
+  }
+
+  .mb_hero_col_right {
+    padding: 15px !important;
+  }
+}
+
+/* End -- form above the fold implementation styles */
