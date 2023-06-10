@@ -17,36 +17,48 @@ function App() {
       <div className="calculator-keys">
         <Operators
           onClick={(e) => {
-            console.log(e.target.value);
-            setOnDisplay([...onDisplay, e.target.value]);
+            // console.log(e.target.value);
+            if (/[+\-*\/]/.test(onDisplay[length - 1])) {
+              console.log("matched regex");
+              // setOnDisplay(onDisplay.pop());
+              // setOnDisplay(onDisplay.slice().push(e.target.value));
+            } else {
+              console.log("did not match regex");
+              console.log(onDisplay);
+              // setOnDisplay(onDisplay.slice().push(e.target.value));
+            }
             console.log(onDisplay);
           }}
         />
         <Numpad
           onClick={(e) => {
-            console.log(e.target.value);
-            setOnDisplay([...onDisplay, e.target.value]);
+            // console.log(e.target.value);
+            onDisplay === "0"
+              ? setOnDisplay(e.target.value)
+              : setOnDisplay(onDisplay.slice().push(e.target.value));
             console.log(onDisplay);
           }}
         />
         <Zero
           onClick={(e) => {
-            console.log(e.target.value);
-            setOnDisplay([...onDisplay, e.target.value]);
+            // console.log(e.target.value);
+            onDisplay !== "0" &&
+              setOnDisplay(onDisplay.slice().push(e.target.value));
             console.log(onDisplay);
           }}
         />
         <Decimal
           onClick={(e) => {
-            console.log(e.target.value);
-            setOnDisplay([...onDisplay, e.target.value]);
+            // console.log(e.target.value);
+            !onDisplay.includes(".") &&
+              setOnDisplay(onDisplay.slice().push(e.target.value));
             console.log(onDisplay);
           }}
         />
         <Clear
           onClick={() => {
-            setOnDisplay([0]);
-            console.log(onDisplay);
+            setOnDisplay("0");
+            // console.log(onDisplay);
           }}
         />
         <Equals />
