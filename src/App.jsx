@@ -9,59 +9,46 @@ import Display from "./components/Display";
 import "./App.css";
 
 function App() {
-  const [onDisplay, setOnDisplay] = useState([0]);
+  const [onDisplay, setOnDisplay] = useState("0");
+
+  function clear() {
+    setOnDisplay("0");
+    console.log("clicked clear");
+  }
+
+  function appendNumber(e) {
+    if (!(e.target.value === "." && onDisplay.includes("."))) {
+      setOnDisplay(onDisplay + e.target.value);
+      console.log(`clicked number ${e.target.value}`);
+    }
+  }
+
+  // appendNumber(number) {
+  //   if (number === '.' && this.currentOperand.includes('.')) return
+  //   this.currentOperand = this.currentOperand.toString() + number.toString()
+  // }
+
+  function chooseOperation(e) {
+    if (onDisplay !== "") {
+      compute();
+    }
+    console.log(`clicked operation ${e.target.value}`);
+  }
+
+  function compute(e) {
+    console.log("clicked compute");
+  }
 
   return (
     <div className="app">
       <Display display={onDisplay} />
       <div className="calculator-keys">
-        <Operators
-          onClick={(e) => {
-            // console.log(e.target.value);
-            if (/[+\-*\/]/.test(onDisplay[length - 1])) {
-              console.log("matched regex");
-              // setOnDisplay(onDisplay.pop());
-              // setOnDisplay(onDisplay.slice().push(e.target.value));
-            } else {
-              console.log("did not match regex");
-              console.log(onDisplay);
-              // setOnDisplay(onDisplay.slice().push(e.target.value));
-            }
-            console.log(onDisplay);
-          }}
-        />
-        <Numpad
-          onClick={(e) => {
-            // console.log(e.target.value);
-            onDisplay === "0"
-              ? setOnDisplay(e.target.value)
-              : setOnDisplay(onDisplay.slice().push(e.target.value));
-            console.log(onDisplay);
-          }}
-        />
-        <Zero
-          onClick={(e) => {
-            // console.log(e.target.value);
-            onDisplay !== "0" &&
-              setOnDisplay(onDisplay.slice().push(e.target.value));
-            console.log(onDisplay);
-          }}
-        />
-        <Decimal
-          onClick={(e) => {
-            // console.log(e.target.value);
-            !onDisplay.includes(".") &&
-              setOnDisplay(onDisplay.slice().push(e.target.value));
-            console.log(onDisplay);
-          }}
-        />
-        <Clear
-          onClick={() => {
-            setOnDisplay("0");
-            // console.log(onDisplay);
-          }}
-        />
-        <Equals />
+        <Operators onClick={chooseOperation} />
+        <Numpad onClick={appendNumber} />
+        <Zero onClick={appendNumber} />
+        <Decimal onClick={appendNumber} />
+        <Clear onClick={clear} />
+        <Equals onClick={compute} />
       </div>
     </div>
   );

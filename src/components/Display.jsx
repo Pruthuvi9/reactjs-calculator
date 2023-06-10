@@ -1,6 +1,6 @@
 import React from "react";
 
-const Display = ({ display = 0 }) => {
+const Display = ({ display }) => {
   return (
     <div id="display" className="display">
       {display}
