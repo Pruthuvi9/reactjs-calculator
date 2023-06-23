@@ -9,34 +9,71 @@ import Display from "./components/Display";
 import "./App.css";
 
 function App() {
-  const [onDisplay, setOnDisplay] = useState("0");
+  const [inputs, setInputs] = useState([0]);
+  const [onDisplay, setOnDisplay] = useState([inputs[0]]);
 
   function clear() {
     setOnDisplay("0");
-    console.log("clicked clear");
   }
 
   function appendNumber(e) {
-    if (!(e.target.value === "." && onDisplay.includes("."))) {
-      setOnDisplay(onDisplay + e.target.value);
-      console.log(`clicked number ${e.target.value}`);
-    }
+    console.log(e.target.value);
+    validateNumber(e.target.value);
   }
-
-  // appendNumber(number) {
-  //   if (number === '.' && this.currentOperand.includes('.')) return
-  //   this.currentOperand = this.currentOperand.toString() + number.toString()
-  // }
 
   function chooseOperation(e) {
     if (onDisplay !== "") {
-      compute();
+      setInputs([...inputs, e.target.value]);
+      compute(e.target.value);
     }
-    console.log(`clicked operation ${e.target.value}`);
   }
 
-  function compute(e) {
-    console.log("clicked compute");
+  function validateNumber(e) {
+    if (Number(e.target.value)) {
+      addToInputArr(Number(e.target.value));
+    } else {
+      evalDecimal(e.target.value);
+    }
+  }
+
+  function appendNumber(num) {
+    if (inputs.length < 1) {
+      inputs[0] = Number(num);
+    } else {
+      inputs.push(num);
+    }
+    console.log(inputs);
+  }
+
+  function evalOperation(oper) {
+    if (inputs.length > 0) {
+      if (inputs[length - 1] === "+" || "-" || "/" || "*" || "0") {
+        inputs[length - 1] = oper;
+      } else {
+        inputs.push(oper);
+      }
+    }
+    console.log(inputs);
+  }
+
+  function compute(operation) {
+    switch (operation) {
+      case "+":
+        inputs.forEach((number) => console.log(number));
+        break;
+      case "-":
+        inputs.forEach((number) => console.log(number));
+        break;
+      case "/":
+        inputs.forEach((number) => console.log(number));
+        break;
+      case "*":
+        inputs.forEach((number) => console.log(number));
+        break;
+
+      default:
+        break;
+    }
   }
 
   return (
@@ -44,9 +81,9 @@ function App() {
       <Display display={onDisplay} />
       <div className="calculator-keys">
         <Operators onClick={chooseOperation} />
-        <Numpad onClick={appendNumber} />
-        <Zero onClick={appendNumber} />
-        <Decimal onClick={appendNumber} />
+        <Numpad onClick={validateNumber} />
+        <Zero onClick={validateNumber} />
+        <Decimal onClick={validateNumber} />
         <Clear onClick={clear} />
         <Equals onClick={compute} />
       </div>
